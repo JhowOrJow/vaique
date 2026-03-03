@@ -46,24 +46,21 @@ body, html {
     position: fixed; 
     top: 0; 
     width: 100%; 
-    padding: 4px 10px; /* Padding mínimo */
+    padding: 4px 10px; 
     background: rgba(0, 0, 0, 0.85);
     color: #ffcb05; 
     text-align: center; 
     z-index: 100; 
-    border-bottom: 2px solid #3b4cca; /* Borda mais fina */
+    border-bottom: 2px solid #3b4cca; 
     display: none; 
     font-family: 'PokemonSolid', sans-serif; 
-    text-shadow: 1px 1px 0 #3b4cca; /* Sombra reduzida */
-    font-size: 0.55rem; /* Fonte bem pequena para mobile */
+    text-shadow: 1px 1px 0 #3b4cca; 
+    font-size: 0.55rem; 
     line-height: 1;
 }
 
 @media (min-width: 768px) {
-    #main-header { 
-        font-size: 0.9rem; 
-        padding: 8px 15px; 
-    }
+    #main-header { font-size: 0.9rem; padding: 8px 15px; }
 }
 
 #stage { 
@@ -165,19 +162,29 @@ body, html {
     cursor: pointer; 
 }
 
+/* PALAVRAS FINAIS - AJUSTE DE TAMANHO PARA CELULAR */
 .word {
     font-family: 'PokemonSolid', sans-serif; 
     color: #ffcb05; 
-    font-size: clamp(1.2rem, 4vw, 3rem);
+    /* Reduzi drasticamente o tamanho mínimo para caber em telas pequenas */
+    font-size: clamp(0.7rem, 3.5vw, 3rem);
     opacity: 0; 
     transform: scale(0.8); 
     transition: all 0.4s ease;
     text-shadow: 3px 3px 0 #3b4cca; 
     text-align: center;
 }
+
+@media (max-width: 900px) {
+    .word {
+        font-size: 0.8rem; /* Força um tamanho pequeno no mobile */
+        text-shadow: 1.5px 1.5px 0 #3b4cca; /* Sombra menor para não borrar */
+    }
+}
+
 .word.revealed { opacity: 1; transform: scale(1); }
 
-/* AJUSTE FINO INDIVIDUAL DAS PALAVRAS */
+/* AJUSTE FINO INDIVIDUAL DAS PALAVRAS NO VÍDEO */
 #zone-0 { top: 5%; left: 4%; }   
 #zone-1 { top: 5%; left: 22%; }
 #zone-2 { top: 5%; left: 41%; }  
@@ -225,7 +232,7 @@ body, html {
     box-shadow: 0 10px 20px rgba(0,0,0,0.3);
 }
 
-.card-front { background: #000000 url('../assets/images/inter.png') no-repeat center / 60%; }
+.card-front { background: #ffffff url('../assets/images/inter.png') no-repeat center / 60%; }
 
 .card-back { 
     background: #fff; 
