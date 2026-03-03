@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const notesBottom = document.getElementById('notes-bottom');
 
     const frasesPrep = ["O Que Será", "Que vêm...", "Por aí?", "Prepare-se!", "Diademenses à Vista"];
-    const segredo = ["Você", "Aceitaria", "Um", "Encontro", "Comigo?"];
+    // const segredo = ["Você", "Aceitaria", "Um", "Encontro", "Comigo?"];
     
     let viradas = 0;
     window.clicksNao = 0; 
