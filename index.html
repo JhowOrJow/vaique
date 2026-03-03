@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Squirtle Gang Project</title>
+    <!-- Fontes Externas -->
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Aviso de Rotação para Mobile -->
+    <div id="rotate-device">
+        <div class="rotate-content">
+            <p>🔄 Por favor, vire o aparelho para o modo horizontal.</p>
+        </div>
+    </div>
+
+    <!-- Música de Fundo -->
+    <audio id="bg-music" loop preload="auto">
+        <source src="assets/sounds/musica-fundo.mp3" type="audio/mpeg">
+        Seu navegador não suporta áudio.
+    </audio>
+
+    <header id="main-header">
+        <h1>Clique nos cartões para revelar o segredo da Gangue Squirtle!</h1>
+    </header>
+
+    <main id="stage">
+        <!-- Fundo Infinito em Loop -->
+        <div class="background-wrap">
+            <div class="bg-layer"></div>
+            <div class="bg-layer mirrored"></div>
+            <div class="bg-layer"></div>
+            <div class="bg-layer mirrored"></div>
+        </div>
+
+        <!-- Camadas de Notas Musicais (Superior e Inferior) -->
+        <div class="music-notes-container top" id="notes-top">
+            <div class="notes-wrap">
+                <div class="notes-layer"></div>
+                <div class="notes-layer mirrored"></div>
+                <div class="notes-layer"></div>
+                <div class="notes-layer"></div>
+                <div class="notes-layer mirrored"></div>
+                <div class="notes-layer"></div>
+                <div class="notes-layer"></div>
+                <div class="notes-layer mirrored"></div>
+                <div class="notes-layer"></div>
+                <div class="notes-layer"></div>
+                <div class="notes-layer mirrored"></div>
+                <div class="notes-layer"></div>
+                <div class="notes-layer"></div>
+                <div class="notes-layer mirrored"></div>
+                <div class="notes-layer"></div>
+                <div class="notes-layer"></div>
+                <div class="notes-layer mirrored"></div>
+                <div class="notes-layer"></div>
+            </div>
+        </div>
+
+        <div class="music-notes-container bottom" id="notes-bottom">
+            <div class="notes-wrap">
+                <div class="notes-layer"></div>
+                <div class="notes-layer mirrored"></div>
+                <div class="notes-layer"></div>
+                <div class="notes-layer"></div>
+                <div class="notes-layer mirrored"></div>
+                <div class="notes-layer"></div>
+                <div class="notes-layer"></div>
+                <div class="notes-layer mirrored"></div>
+                <div class="notes-layer"></div>
+                <div class="notes-layer"></div>
+                <div class="notes-layer mirrored"></div>
+                <div class="notes-layer"></div>
+                <div class="notes-layer"></div>
+                <div class="notes-layer mirrored"></div>
+                <div class="notes-layer"></div>
+                <div class="notes-layer"></div>
+                <div class="notes-layer mirrored"></div>
+                <div class="notes-layer"></div>
+            </div>
+        </div>
+
+        <!-- Área do Vídeo Central (75% altura) -->
+        <div id="video-container">
+            <video id="intro-video" playsinline preload="auto">
+                <source src="assets/videos/intro.mp4" type="video/mp4">
+            </video>
+            <!-- Camada interativa para as palavras finais -->
+            <div id="message-overlay"></div>
+        </div>
+
+        <!-- Container das Cartas de Preparação -->
+        <div id="card-container"></div>
+
+        <!-- Botão de Início e Seta Indicativa -->
+        <div class="controls-wrapper">
+            <div id="start-pointer">
+                <span>Clique aqui!</span>
+                <div class="arrow">⬇</div>
+            </div>
+            <button id="start-btn">Começo do Início</button>
+        </div>
+
+        <!-- Caixa de Diálogo Estilo Pokémon -->
+        <div id="pokemon-dialog" class="dialog-hidden">
+            <div class="dialog-content">
+                <p id="dialog-text"></p>
+                <div class="dialog-buttons">
+                    <button class="choice-btn" id="btn-sim" onclick="decisao('sim')">Sim</button>
+                    <button class="choice-btn" id="btn-nao" onclick="decisao('nao')">Hoje não Faro</button>
+                </div>
+                <!-- Botão WhatsApp -->
+                <a id="whatsapp-btn" href="#" target="_blank" class="dialog-hidden">Enviar WhatsApp 🐢📱</a>
+            </div>
+        </div>
+        
+        <!-- Efeito visual de bordas -->
+        <div class="vignette"></div>
+    </main>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
