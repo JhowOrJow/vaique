@@ -41,27 +41,29 @@ body, html {
     #rotate-device { display: flex; }
 }
 
-/* HEADER AJUSTADO PARA NÃO QUEBRAR NO CELULAR */
+/* HEADER ULTRA FINO E REDUZIDO */
 #main-header {
     position: fixed; 
     top: 0; 
     width: 100%; 
-    padding: 8px 15px; 
+    padding: 4px 10px; /* Padding mínimo */
     background: rgba(0, 0, 0, 0.85);
     color: #ffcb05; 
     text-align: center; 
     z-index: 100; 
-    border-bottom: 3px solid #3b4cca;
+    border-bottom: 2px solid #3b4cca; /* Borda mais fina */
     display: none; 
     font-family: 'PokemonSolid', sans-serif; 
-    text-shadow: 2px 2px 0 #3b4cca;
-    /* Fonte menor para celular, maior para PC */
-    font-size: 0.7rem;
-    line-height: 1.2;
+    text-shadow: 1px 1px 0 #3b4cca; /* Sombra reduzida */
+    font-size: 0.55rem; /* Fonte bem pequena para mobile */
+    line-height: 1;
 }
 
 @media (min-width: 768px) {
-    #main-header { font-size: 1.1rem; padding: 15px; }
+    #main-header { 
+        font-size: 0.9rem; 
+        padding: 8px 15px; 
+    }
 }
 
 #stage { 
@@ -223,7 +225,7 @@ body, html {
     box-shadow: 0 10px 20px rgba(0,0,0,0.3);
 }
 
-.card-front { background: #ffffff url('../assets/images/inter.png') no-repeat center / 60%; }
+.card-front { background: #000000 url('../assets/images/inter.png') no-repeat center / 60%; }
 
 .card-back { 
     background: #fff; 
@@ -233,7 +235,7 @@ body, html {
     color: #ffcb05; 
     font-size: clamp(0.6rem, 1.8vw, 1.6rem); 
     text-align: center;
-    text-shadow: 1px 1px 0 #3b4cca;
+    text-shadow: 0.5px 0.5px 0 #3b4cca;
 }
 
 .wave-effect { animation: waveMotion 800ms ease-in-out infinite alternate; }
