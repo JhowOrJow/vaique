@@ -245,7 +245,7 @@ body, html {
     color: #ffcb05; 
     font-size: clamp(0.6rem, 1.8vw, 1.6rem); 
     text-align: center;
-    text-shadow: 1px 1px 0 #3b4cca;
+    text-shadow: 2px 2px 0 #3b4cca;
 }
 
 .wave-effect { animation: waveMotion 800ms ease-in-out infinite alternate; }
