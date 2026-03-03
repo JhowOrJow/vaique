@@ -162,27 +162,16 @@ body, html {
     cursor: pointer; 
 }
 
-/* PALAVRAS FINAIS - AJUSTE DE TAMANHO PARA CELULAR */
+/* PALAVRAS FINAIS - AJUSTE PARA DESKTOP */
 .word {
     font-family: 'PokemonSolid', sans-serif; 
     color: #ffcb05; 
-    /* Reduzi drasticamente o tamanho mínimo para caber em telas pequenas */
-    font-size: clamp(0.7rem, 3.5vw, 3rem);
+    font-size: clamp(1.2rem, 3.5vw, 3rem);
     opacity: 0; 
     transform: scale(0.8); 
     transition: all 0.4s ease;
     text-shadow: 3px 3px 0 #3b4cca; 
     text-align: center;
-}
-
-@media (max-width: 900px) {
-    .word {
-        font-size: 1rem; /* Força um tamanho pequeno no mobile */
-        text-shadow: 1.5px 1.5px 0 #3b4cca; /* Sombra menor para não borrar */
-    }
-    .card-back {
-        text-shadow: 0.7px 0.7px 0 #3b4cca; /* Sombra menor para não borrar */
-    }
 }
 
 .word.revealed { opacity: 1; transform: scale(1); }
@@ -235,7 +224,7 @@ body, html {
     box-shadow: 0 10px 20px rgba(0,0,0,0.3);
 }
 
-.card-front { background: #ffffff url('../assets/images/inter.png') no-repeat center / 60%; }
+.card-front { background: #000000 url('../assets/images/inter.png') no-repeat center / 60%; }
 
 .card-back { 
     background: #fff; 
@@ -245,7 +234,20 @@ body, html {
     color: #ffcb05; 
     font-size: clamp(0.6rem, 1.8vw, 1.6rem); 
     text-align: center;
-    text-shadow: 2px 2px 0 #3b4cca;
+    text-shadow: 2px 2px 0 #3b4cca; /* Sombra padrão desktop */
+}
+
+/* MEDIA QUERY - AJUSTES PARA CELULAR (ATÉ 900PX) */
+@media (max-width: 900px) {
+    /* Ajusta a sombra das palavras finais no vídeo */
+    .word {
+        font-size: 1rem;
+        text-shadow: 1.5px 1.5px 0 #3b4cca; 
+    }
+    /* Ajusta a sombra do texto dentro das cartas */
+    .card-back {
+        text-shadow: 1px 1px 0 #3b4cca;
+    }
 }
 
 .wave-effect { animation: waveMotion 800ms ease-in-out infinite alternate; }
