@@ -224,7 +224,7 @@ body, html {
     box-shadow: 0 10px 20px rgba(0,0,0,0.3);
 }
 
-.card-front { background: #000000 url('../assets/images/inter.png') no-repeat center / 60%; }
+.card-front { background: #ffffff url('../assets/images/inter.png') no-repeat center / 60%; }
 
 .card-back { 
     background: #fff; 
@@ -234,7 +234,7 @@ body, html {
     color: #ffcb05; 
     font-size: clamp(0.6rem, 1.8vw, 1.6rem); 
     text-align: center;
-    text-shadow: 2px 2px 0 #3b4cca; /* Sombra padrão desktop */
+    text-shadow: 3px 3px 0 #3b4cca; /* Sombra padrão desktop */
 }
 
 /* MEDIA QUERY - AJUSTES PARA CELULAR (ATÉ 900PX) */
@@ -242,7 +242,7 @@ body, html {
     /* Ajusta a sombra das palavras finais no vídeo */
     .word {
         font-size: 1rem;
-        text-shadow: 1.5px 1.5px 0 #3b4cca; 
+        text-shadow: 1px 1px 0 #3b4cca; 
     }
     /* Ajusta a sombra do texto dentro das cartas */
     .card-back {
