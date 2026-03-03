@@ -1,48 +1,118 @@
 @font-face {
     font-family: 'PokemonSolid';
     src: url('../fonts/PokemonSolid.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-body, html { width: 100%; height: 100%; overflow: hidden; background-color: #000; font-family: sans-serif; }
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    -webkit-tap-highlight-color: transparent; 
+}
 
-/* BLOQUEIO DE ROTAÇÃO */
+body, html { 
+    width: 100%; 
+    height: 100%; 
+    overflow: hidden; 
+    background-color: #000; 
+    font-family: sans-serif; 
+}
+
+/* AVISO DE ROTAÇÃO PARA DISPOSITIVOS MÓVEIS */
 #rotate-device {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: #000; color: #fff; z-index: 9999;
-    display: none; align-items: center; justify-content: center; text-align: center;
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
+    background: #000; 
+    color: #fff; 
+    z-index: 9999;
+    display: none; 
+    align-items: center; 
+    justify-content: center; 
+    text-align: center;
+    padding: 20px;
 }
-@media (orientation: portrait) and (max-width: 900px) { #rotate-device { display: flex; } }
 
-/* HEADER */
+@media (orientation: portrait) and (max-width: 900px) {
+    #rotate-device { display: flex; }
+}
+
+/* HEADER AJUSTADO PARA NÃO QUEBRAR NO CELULAR */
 #main-header {
-    position: fixed; top: 0; width: 100%; padding: 10px; background: rgba(0, 0, 0, 0.8);
-    color: #ffcb05; text-align: center; z-index: 100; border-bottom: 4px solid #3b4cca;
-    display: none; font-family: 'PokemonSolid', sans-serif; text-shadow: 2px 2px 0 #3b4cca;
-    font-size: clamp(0.6rem, 2vw, 1.2rem);
+    position: fixed; 
+    top: 0; 
+    width: 100%; 
+    padding: 8px 15px; 
+    background: rgba(0, 0, 0, 0.85);
+    color: #ffcb05; 
+    text-align: center; 
+    z-index: 100; 
+    border-bottom: 3px solid #3b4cca;
+    display: none; 
+    font-family: 'PokemonSolid', sans-serif; 
+    text-shadow: 2px 2px 0 #3b4cca;
+    /* Fonte menor para celular, maior para PC */
+    font-size: 0.7rem;
+    line-height: 1.2;
 }
 
-#stage { position: relative; width: 100vw; height: 100vh; display: flex; justify-content: center; align-items: center; overflow: hidden; }
+@media (min-width: 768px) {
+    #main-header { font-size: 1.1rem; padding: 15px; }
+}
 
-/* FUNDO INFINITO */
+#stage { 
+    position: relative; 
+    width: 100vw; 
+    height: 100vh; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    overflow: hidden; 
+}
+
+/* FUNDO INFINITO EM LOOP */
 .background-wrap { 
-    position: absolute; top: 0; left: 0; display: flex; 
-    width: 400vw; height: 100%; z-index: 1; 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    display: flex; 
+    width: 400vw; 
+    height: 100%; 
+    z-index: 1; 
     animation: scrollBackground 45s linear infinite; 
     will-change: transform;
 }
+
 .bg-layer { 
-    flex-shrink: 0; width: 100vw; height: 100%; 
+    flex-shrink: 0; 
+    width: 100vw; 
+    height: 100%; 
     background-image: url('../assets/images/background.png'); 
-    background-size: 100.5% 100%; background-position: center; background-repeat: no-repeat;
+    background-size: 100.5% 100%; 
+    background-position: center; 
+    background-repeat: no-repeat; 
 }
+
 .mirrored { transform: scaleX(-1); }
-@keyframes scrollBackground { from { transform: translateX(0); } to { transform: translateX(-200vw); } }
+
+@keyframes scrollBackground { 
+    from { transform: translateX(0); } 
+    to { transform: translateX(-200vw); } 
+}
 
 /* NOTAS MUSICAIS ONDULANTES */
 .music-notes-container {
-    position: absolute; width: 100%; height: 160px; z-index: 3;
-    display: none; overflow: hidden; pointer-events: none;
+    position: absolute; 
+    width: 100%; 
+    height: 120px; 
+    z-index: 3;
+    display: none; 
+    overflow: hidden; 
+    pointer-events: none;
 }
 .music-notes-container.top { top: 0; }
 .music-notes-container.bottom { bottom: 0; }
@@ -50,101 +120,228 @@ body, html { width: 100%; height: 100%; overflow: hidden; background-color: #000
 .notes-wrap { display: flex; width: 300vw; height: 100%; animation: scrollNotes 25s linear infinite; }
 
 .notes-layer {
-    width: 100vw; height: 100%;
+    width: 100vw; 
+    height: 100%;
     background-image: url('../assets/images/notas.png');
-    background-size: contain; background-repeat: repeat-x;
+    background-size: contain; 
+    background-repeat: repeat-x;
     background-position: center;
-    opacity: 1; /* Opacidade diminuída */
-    transform-origin: center;
-    /* Movimento de onda mais forte e rotativo */
+    opacity: 0.4;
     animation: waveNotes 4s ease-in-out infinite alternate;
 }
 
 @keyframes scrollNotes { from { transform: translateX(0); } to { transform: translateX(-100vw); } }
-
 @keyframes waveNotes {
-    from { transform: translateY(-40px) rotate(-3deg); }
-    to { transform: translateY(40px) rotate(3deg); }
+    from { transform: translateY(-30px) rotate(-2deg); }
+    to { transform: translateY(30px) rotate(2deg); }
 }
 
-/* VÍDEO CENTRAL */
-#video-container { position: absolute; top: 50%; width: 100%; height: 75vh; transform: translateY(-50%); z-index: 5; display: none; border: 4px solid #fff; }
+/* VÍDEO CENTRALIZADO */
+#video-container { 
+    position: absolute; 
+    top: 50%; 
+    width: 100%; 
+    height: 75vh; 
+    transform: translateY(-50%); 
+    z-index: 5; 
+    display: none; 
+    border-top: 4px solid #fff;
+    border-bottom: 4px solid #fff;
+}
+
 #intro-video { width: 100%; height: 100%; object-fit: cover; }
+
 #message-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; }
 
-.click-zone { position: absolute; width: 15%; height: 25%; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+.click-zone { 
+    position: absolute; 
+    width: 15%; 
+    height: 25%; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    cursor: pointer; 
+}
+
 .word {
-    font-family: 'PokemonSolid', sans-serif; color: #ffcb05; font-size: clamp(1.5rem, 4vw, 4rem);
-    opacity: 0; transform: scale(0.8); transition: all 0.4s ease;
-    text-shadow: 4px 4px 0 #3b4cca; text-align: center;
+    font-family: 'PokemonSolid', sans-serif; 
+    color: #ffcb05; 
+    font-size: clamp(1.2rem, 4vw, 3rem);
+    opacity: 0; 
+    transform: scale(0.8); 
+    transition: all 0.4s ease;
+    text-shadow: 3px 3px 0 #3b4cca; 
+    text-align: center;
 }
 .word.revealed { opacity: 1; transform: scale(1); }
 
-/* AJUSTE FINO DAS PALAVRAS */
-#zone-0 { top: 5%; left: 4%; }   #zone-1 { top: 5%; left: 22%; }
-#zone-2 { top: 5%; left: 41%; }  #zone-3 { top: 5%; left: 59%; }
+/* AJUSTE FINO INDIVIDUAL DAS PALAVRAS */
+#zone-0 { top: 5%; left: 4%; }   
+#zone-1 { top: 5%; left: 22%; }
+#zone-2 { top: 5%; left: 41%; }  
+#zone-3 { top: 5%; left: 59%; }
 #zone-4 { top: 5%; left: 77.5%; }
 
-/* CARTAS */
-#card-container { position: absolute; width: 100%; display: flex; justify-content: center; gap: 2vw; z-index: 20; }
-.card { width: clamp(80px, 15vw, 180px); height: clamp(120px, 22vw, 260px); perspective: 1500px; cursor: pointer; }
-.card-inner { position: relative; width: 100%; height: 100%; transition: transform 3.2s 0.3s cubic-bezier(0.4, 0, 0.2, 1); transform-style: preserve-3d; }
+/* CARTAS RESPONSIVAS */
+#card-container { 
+    position: absolute; 
+    width: 100%; 
+    display: flex; 
+    justify-content: center; 
+    gap: 2vw; 
+    z-index: 20; 
+}
+
+.card { 
+    width: clamp(70px, 14vw, 180px); 
+    height: clamp(100px, 20vw, 260px); 
+    perspective: 1500px; 
+    cursor: pointer; 
+}
+
+.card-inner { 
+    position: relative; 
+    width: 100%; 
+    height: 100%; 
+    transition: transform 1.5s 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+    transform-style: preserve-3d; 
+}
+
 .card.flipped .card-inner { transform: rotateY(180deg) scale(1.05); }
-.card-front, .card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border: 3px solid #fff; border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+
+.card-front, .card-back { 
+    position: absolute; 
+    width: 100%; 
+    height: 100%; 
+    backface-visibility: hidden; 
+    -webkit-backface-visibility: hidden;
+    border: 3px solid #fff; 
+    border-radius: 10px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
 .card-front { background: #ffffff url('../assets/images/inter.png') no-repeat center / 60%; }
-.card-back { background: #fff; transform: rotateY(180deg); padding: 5px; font-family: 'PokemonSolid', sans-serif; color: #ffcb05; font-size: clamp(0.7rem, 2vw, 1.8rem); text-align: center; text-shadow: 2px 2px 0 #3b4cca; }
+
+.card-back { 
+    background: #fff; 
+    transform: rotateY(180deg); 
+    padding: 5px; 
+    font-family: 'PokemonSolid', sans-serif; 
+    color: #ffcb05; 
+    font-size: clamp(0.6rem, 1.8vw, 1.6rem); 
+    text-align: center;
+    text-shadow: 1px 1px 0 #3b4cca;
+}
 
 .wave-effect { animation: waveMotion 800ms ease-in-out infinite alternate; }
-@keyframes waveMotion { from { transform: translateY(0); } to { transform: translateY(-60px); } }
+@keyframes waveMotion { from { transform: translateY(0); } to { transform: translateY(-40px); } }
 
-/* BOTÃO DE INÍCIO */
-.controls-wrapper { position: absolute; z-index: 999; display: flex; justify-content: center; align-items: center; }
-#start-pointer {
-    position: absolute; top: -80px; display: flex; flex-direction: column; align-items: center;
-    font-family: 'PokemonSolid', sans-serif; color: #ffcb05; text-shadow: 2px 2px #3b4cca; font-size: clamp(1rem, 3vw, 2rem); 
-    animation: floatArrow 0.8s ease-in-out infinite alternate; pointer-events: none;
+/* INTERFACE DE INÍCIO */
+.controls-wrapper { 
+    position: absolute; 
+    z-index: 999; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
 }
-@keyframes floatArrow { from { transform: translateY(0); } to { transform: translateY(15px); } }
+
+#start-pointer {
+    position: absolute; 
+    top: -70px; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center;
+    font-family: 'PokemonSolid', sans-serif; 
+    color: #ffcb05; 
+    text-shadow: 2px 2px #3b4cca;
+    animation: floatArrow 0.8s ease-in-out infinite alternate; 
+    pointer-events: none;
+}
+#start-pointer span { font-size: 1rem; margin-bottom: 5px; }
+#start-pointer .arrow { font-size: 1.5rem; }
+@keyframes floatArrow { from { transform: translateY(0); } to { transform: translateY(12px); } }
 
 #start-btn {
-    font-family: 'PokemonSolid', sans-serif; font-size: clamp(1rem, 3vw, 2.5rem); padding: 15px 30px; cursor: pointer;
-    color: #ffcb05; background: linear-gradient(180deg, #3b4cca 0%, #2434a1 100%);
-    border: 4px solid #ffcb05; border-radius: 50px; text-shadow: 2px 2px 0 #3b4cca;
-    box-shadow: 0 5px 0 #1a237e, 0 10px 20px rgba(0,0,0,0.4); transition: 0.2s;
+    font-family: 'PokemonSolid', sans-serif; 
+    font-size: clamp(0.9rem, 2.5vw, 1.6rem); 
+    padding: 15px 35px; 
+    cursor: pointer;
+    color: #ffcb05; 
+    background: linear-gradient(180deg, #3b4cca 0%, #2434a1 100%);
+    border: 4px solid #ffcb05; 
+    border-radius: 50px; 
+    text-shadow: 2px 2px 0 #3b4cca;
+    box-shadow: 0 5px 0 #1a237e, 0 10px 20px rgba(0,0,0,0.4);
+    transition: 0.2s;
 }
+
+#start-btn:hover { transform: translateY(-3px); filter: brightness(1.1); }
 #start-btn.hide-btn { display: none !important; }
 
 /* CAIXA DE DIÁLOGO */
 #pokemon-dialog {
-    position: fixed; bottom: 5%; left: 50%; transform: translateX(-50%);
-    width: 90%; max-width: 850px; min-height: 120px;
-    background: #fff; border: 5px solid #50a0f8; border-radius: 12px;
-    box-shadow: inset 0 0 0 3px #fff, 0 0 0 4px #000; z-index: 200; padding: 20px;
+    position: fixed; 
+    bottom: 5%; 
+    left: 50%; 
+    transform: translateX(-50%);
+    width: 92%; 
+    max-width: 850px; 
+    min-height: 110px;
+    background: #fff; 
+    border: 5px solid #50a0f8; 
+    border-radius: 12px;
+    box-shadow: inset 0 0 0 3px #fff, 0 0 0 4px #000; 
+    z-index: 200; 
+    padding: 15px;
 }
+
 .dialog-hidden { display: none !important; }
-#dialog-text { font-family: 'VT323', monospace; font-size: clamp(1.4rem, 4vw, 2.8rem); color: #333; line-height: 1.2; white-space: pre-wrap; letter-spacing: 1px; }
-.dialog-buttons { display: flex; justify-content: flex-end; gap: 10px; margin-top: 15px; }
-.choice-btn { font-family: 'VT323', monospace; font-size: clamp(1rem, 3vw, 1.8rem); padding: 5px 20px; cursor: pointer; background: #fff; border: 2px solid #333; border-radius: 5px; }
+
+#dialog-text { 
+    font-family: 'VT323', monospace; 
+    font-size: clamp(1.2rem, 3.5vw, 2.6rem); 
+    color: #333; 
+    line-height: 1.2; 
+    white-space: pre-wrap; 
+    word-wrap: break-word;
+    letter-spacing: 1px; 
+}
+
+.dialog-buttons { display: flex; justify-content: flex-end; gap: 8px; margin-top: 10px; }
+
+.choice-btn { 
+    font-family: 'VT323', monospace; 
+    font-size: clamp(1rem, 2.5vw, 1.8rem); 
+    padding: 5px 15px; 
+    cursor: pointer; 
+    background: #fff; 
+    border: 2px solid #333; 
+    border-radius: 5px; 
+    transition: 0.2s;
+}
 
 #whatsapp-btn {
-    display: inline-block; margin-top: 15px; padding: 12px 24px;
-    background: #25d366; color: #fff; text-decoration: none;
-    font-family: 'VT323', monospace; font-size: 1.8rem; border-radius: 10px;
-    border: 3px solid #128c7e; text-align: center; animation: pop 0.4s ease;
-}
-@keyframes pop { from { transform: scale(0); } to { transform: scale(1); } }
-
-.vignette { position: absolute; width: 100%; height: 100%; background: radial-gradient(circle, transparent 40%, rgba(0,0,0,0.5)); z-index: 2; pointer-events: none; }
-
-/* Localize ou adicione esta regra */
-.notes-layer.mirrored {
-    transform: scaleX(-1);
-    /* Garante que a animação de onda continue funcionando mesmo espelhada */
-    animation: waveNotesMirrored 4s ease-in-out infinite alternate;
+    display: inline-block; 
+    margin-top: 10px; 
+    padding: 10px 20px;
+    background: #25d366; 
+    color: #fff; 
+    text-decoration: none;
+    font-family: 'VT323', monospace; 
+    font-size: clamp(1.2rem, 3vw, 1.8rem); 
+    border-radius: 8px;
+    border: 3px solid #128c7e; 
+    text-align: center;
 }
 
-/* Nova animação específica para a camada espelhada */
-@keyframes waveNotesMirrored {
-    from { transform: translateY(-40px) rotate(-3deg) scaleX(-1); }
-    to { transform: translateY(40px) rotate(3deg) scaleX(-1); }
+.vignette { 
+    position: absolute; 
+    width: 100%; 
+    height: 100%; 
+    background: radial-gradient(circle, transparent 40%, rgba(0,0,0,0.5)); 
+    z-index: 2; 
+    pointer-events: none; 
 }
